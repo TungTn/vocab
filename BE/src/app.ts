@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import wordRoutes from './router/word.router';
+import wordRoutes from './routes/word.routes';
 import { db } from './db';
 
 const app = express();

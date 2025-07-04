@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { db } from '../db';
 
-export const addWord = async (req: Request, res: Response) => {
+export const addWord = async (req: Request, res: Response)  => {
     const { word, translation, meaning, verb1, verb2, verb3 } = req.body;
 
     if (!word || !translation) {

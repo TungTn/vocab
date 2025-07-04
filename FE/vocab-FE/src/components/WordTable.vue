@@ -15,6 +15,11 @@
       <el-table-column prop="verb1" label="V1" width="100" />
       <el-table-column prop="verb2" label="V2" width="100" />
       <el-table-column prop="verb3" label="V3" width="100" />
+      <el-table-column :label="'Hành động'">
+        <template #default="scope">
+          <Edit class="icon" @click="handleEdit(scope.row)"/>
+        </template>
+      </el-table-column>
     </el-table>
 
     <el-pagination
@@ -32,12 +37,18 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { fetchWords } from '../services/api';
+import {Edit,} from '@element-plus/icons-vue'
 
 const wordList = ref([]);
 const search = ref('');
 const page = ref(1);
 const limit = 10;
 const total = ref(0);
+const emits = defineEmits(['edit'])
+
+onMounted(() => {
+  fetchList()
+})
 
 const fetchList = async () => {
   const { data } = await fetchWords({ page: page.value, limit, search: search.value });
@@ -50,5 +61,15 @@ const onPageChange = (val: number) => {
   fetchList();
 };
 
-onMounted(fetchList);
+const handleEdit = (e: any) => {
+  emits('edit', e)
+}
 </script>
+
+<style lang="scss" scoped>
+.icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+</style>

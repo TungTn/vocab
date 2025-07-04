@@ -27,7 +27,7 @@
 
 <script setup lang="ts">
 import { ref, watch, defineProps, defineEmits } from 'vue';
-import { addWord } from '../services/api';
+import { addWord, updateWord } from '../services/api';
 
 const props = defineProps<{
   modelValue?: any;
@@ -35,6 +35,7 @@ const props = defineProps<{
 const emit = defineEmits(['submitted']);
 
 const form = ref({
+  id: null,
   word: '',
   translation: '',
   meaning: '',
@@ -42,6 +43,18 @@ const form = ref({
   verb2: '',
   verb3: '',
 });
+
+const resetForm = () => {
+  form.value = {
+    id: null,
+    word: '',
+    translation: '',
+    meaning: '',
+    verb1: '',
+    verb2: '',
+    verb3: '',
+  };
+};
 
 watch(
     () => props.modelValue,
@@ -52,21 +65,17 @@ watch(
     { immediate: true }
 );
 
-const resetForm = () => {
-  form.value = {
-    word: '',
-    translation: '',
-    meaning: '',
-    verb1: '',
-    verb2: '',
-    verb3: '',
-  };
-};
-
 const submitForm = async () => {
-  if (!form.value.word || !form.value.translation) return alert('Word + translation required');
+  if (!form.value.word || !form.value.translation) {
+    alert('Word + translation required');
+    return;
+  }
 
-  await addWord(form.value);
+  if (form.value.id) {
+    await updateWord(form.value.id, form.value); // edit mode
+  } else {
+    await addWord(form.value); // add mode
+  }
 
   emit('submitted');
   resetForm();
