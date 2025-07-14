@@ -5,30 +5,54 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81814153-d2a3-4f5c-a5a0-532813eda9fd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/BE/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/app.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/db.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/src/server.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DB/init.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/vocab-FE/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/vocab-FE/.vscode/extensions.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/vocab-FE/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/vocab-FE/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/vocab-FE/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/vocab-FE/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/vocab-FE/public/vite.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/vocab-FE/src/App.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/vocab-FE/src/assets/vue.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/vocab-FE/src/components/HelloWorld.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/vocab-FE/src/main.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/vocab-FE/src/services/api.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/vocab-FE/src/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/vocab-FE/src/vite-env.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/vocab-FE/tsconfig.app.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/vocab-FE/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/vocab-FE/tsconfig.node.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FE/vocab-FE/vite.config.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vocab.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/vocab-react/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/vocab-react/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/vocab-react/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/vocab-react/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/vocab-react/postcss.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/vocab-react/public/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/vocab-react/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/vocab-react/public/logo192.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/vocab-react/public/logo512.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/vocab-react/public/manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/vocab-react/public/robots.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/vocab-react/src/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/vocab-react/src/App.test.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/vocab-react/src/App.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/vocab-react/src/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/vocab-react/src/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/vocab-react/src/logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/vocab-react/src/react-app-env.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/vocab-react/src/reportWebVitals.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/vocab-react/src/setupTests.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/vocab-react/tailwind.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/vocab-react/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/BE/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/vocab-FE/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/FE/vocab-vue/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/vocab-FE/.vscode/extensions.json" beforeDir="false" afterPath="$PROJECT_DIR$/FE/vocab-vue/.vscode/extensions.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/vocab-FE/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/FE/vocab-vue/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/vocab-FE/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/FE/vocab-vue/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/vocab-FE/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/FE/vocab-vue/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/vocab-FE/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/FE/vocab-vue/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/vocab-FE/public/vite.svg" beforeDir="false" afterPath="$PROJECT_DIR$/FE/vocab-vue/public/vite.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/vocab-FE/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/FE/vocab-vue/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/vocab-FE/src/assets/vue.svg" beforeDir="false" afterPath="$PROJECT_DIR$/FE/vocab-vue/src/assets/vue.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/vocab-FE/src/components/Form.vue" beforeDir="false" afterPath="$PROJECT_DIR$/FE/vocab-vue/src/components/Form.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/vocab-FE/src/components/WordTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/FE/vocab-vue/src/components/WordTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/vocab-FE/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FE/vocab-vue/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/vocab-FE/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FE/vocab-vue/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/vocab-FE/src/services/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FE/vocab-vue/src/services/api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/vocab-FE/src/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/FE/vocab-vue/src/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/vocab-FE/src/utils/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FE/vocab-vue/src/utils/auth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/vocab-FE/src/views/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/FE/vocab-vue/src/views/Index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/vocab-FE/src/views/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/FE/vocab-vue/src/views/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/vocab-FE/src/vite-env.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FE/vocab-vue/src/vite-env.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/vocab-FE/tsconfig.app.json" beforeDir="false" afterPath="$PROJECT_DIR$/FE/vocab-vue/tsconfig.app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/vocab-FE/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/FE/vocab-vue/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/vocab-FE/tsconfig.node.json" beforeDir="false" afterPath="$PROJECT_DIR$/FE/vocab-vue/tsconfig.node.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/vocab-FE/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FE/vocab-vue/vite.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,31 +62,36 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2zOYs6VbRrCgcb2R0728B6hZ8ad" />
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "D:/vocab",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "D:\\vocab\\FE\\vocab-FE\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/dev&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/vocab&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\vocab\\FE\\vocab-react\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\vocab\BE" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -79,6 +108,9 @@
       <option name="presentableId" value="Default" />
       <updated>1751603789702</updated>
       <workItem from="1751603790943" duration="1330000" />
+      <workItem from="1751611146132" duration="9359000" />
+      <workItem from="1752139334585" duration="2076000" />
+      <workItem from="1752220748458" duration="175000" />
     </task>
     <servers />
   </component>

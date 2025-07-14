@@ -7,6 +7,6 @@
 
 <script setup lang="ts">
 const loginWithGoogle = () => {
-  window.location.href = 'http://localhost:3000/api/auth/google?prompt=select_account';
+  window.location.href = 'http://localhost:3000/api/auth/google?prompt=select_account&client=vue';
 };
 </script>
