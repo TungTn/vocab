@@ -1,0 +1,20 @@
+{
+  "name": "@linguaflow/mobile",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "echo \"Mobile app ready\"",
+    "build": "tsc --noEmit",
+    "test": "vitest run",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@linguaflow/shared-types": "workspace:*",
+    "@linguaflow/srs-engine": "workspace:*"
+  },
+  "devDependencies": {
+    "@linguaflow/tsconfig": "workspace:*",
+    "typescript": "^5.7.3",
+    "vitest": "^3.2.7"
+  }
+}

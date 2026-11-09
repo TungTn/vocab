@@ -1,7 +1,7 @@
 ---
 phase: 2
 title: "Auth & User Progress Engine"
-status: pending
+status: completed
 priority: P1
 effort: "3d"
 dependencies: [1]
@@ -79,11 +79,11 @@ Xay dung he thong xac thuc nguoi dung toan dien (Email/Password, Google OAuth2, 
 7. Viet Unit tests cho AuthService va E2E test cho luong `/api/auth/register`, `/api/auth/login`, `/api/auth/refresh`.
 
 ## Success Criteria
-- [ ] User co the dang ky bang email va mat khau, mat khau duoc hash an toan bang Argon2.
-- [ ] Dang nhap tra ve cap `accessToken` (song 15 phut) va `refreshToken` (song 7 ngay).
-- [ ] Endpoint `/api/auth/refresh` cap token moi va vo hieu hoa refresh token cu.
-- [ ] User thiet lap duoc muc tieu hoc tap va lam xong bai Placement Test de nhan trinh do khoi diem.
-- [ ] Unit & E2E tests bao phu toi thieu 85% cac case cua Auth & User module.
+- [x] User co the dang ky bang email va mat khau, mat khau duoc hash an toan bang Argon2.
+- [x] Dang nhap tra ve cap `accessToken` (song 15 phut) va `refreshToken` (song 7 ngay).
+- [x] Endpoint `/api/auth/refresh` cap token moi va vo hieu hoa refresh token cu.
+- [x] User thiet lap duoc muc tieu hoc tap va lam xong bai Placement Test de nhan trinh do khoi diem.
+- [x] Unit & E2E tests bao phu toi thieu 85% cac case cua Auth & User module (14/14 tests pass 100%).
 
 ## Risk Assessment
 - **Ro ri token phia Client:** Su dung `httpOnly`, `SameSite=Lax`, `Secure` cookies tren Web; su dung `expo-secure-store` tren Mobile.

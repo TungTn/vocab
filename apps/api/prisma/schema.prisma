@@ -1,0 +1,378 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  USER
+  PREMIUM
+  TEACHER
+  ADMIN
+}
+
+enum LanguageLevel {
+  A1
+  A2
+  B1
+  B2
+  C1
+  C2
+}
+
+enum CardState {
+  NEW
+  LEARNING
+  REVIEW
+  RELEARNING
+}
+
+enum LeagueTier {
+  BRONZE
+  SILVER
+  GOLD
+  SAPPHIRE
+  RUBY
+  DIAMOND
+}
+
+model User {
+  id                   String                @id @default(uuid())
+  email                String                @unique
+  username             String                @unique
+  passwordHash         String?
+  role                 UserRole              @default(USER)
+  avatarUrl            String?
+  xp                   Int                   @default(0)
+  streak               Int                   @default(0)
+  hearts               Int                   @default(5)
+  streakFreezeCount    Int                   @default(0)
+  gems                 Int                   @default(100)
+  league               LeagueTier            @default(BRONZE)
+  timezone             String                @default("UTC")
+  createdAt            DateTime              @default(now())
+  updatedAt            DateTime              @updatedAt
+
+  profile              UserProfile?
+  streakData           UserStreak?
+  progress             UserProgress[]
+  lessonProgress       UserLessonProgress[]
+  placementTests       PlacementTestResult[]
+  refreshTokens        RefreshToken[]
+  achievements         UserAchievement[]
+  customDecks          Deck[]
+  reviewStates         CardReviewState[]
+  reviewLogs           ReviewLog[]
+  speakingSessions     SpeakingSession[]
+
+  @@index([email])
+  @@index([username])
+  @@index([league])
+}
+
+model UserStreak {
+  userId         String    @id
+  currentStreak  Int       @default(0)
+  longestStreak  Int       @default(0)
+  freezeCount    Int       @default(1)
+  lastActivityAt DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Achievement {
+  id               String            @id
+  title            String
+  description      String
+  badgeIcon        String
+  requirement      Int
+  category         String            // STREAK, XP, LESSON
+  gemReward        Int               @default(50)
+  userAchievements UserAchievement[]
+  createdAt        DateTime          @default(now())
+}
+
+model UserAchievement {
+  id            String      @id @default(uuid())
+  userId        String
+  achievementId String
+  unlockedAt    DateTime    @default(now())
+
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  achievement   Achievement @relation(fields: [achievementId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, achievementId])
+  @@index([userId])
+}
+
+model UserProfile {
+  id               String        @id @default(uuid())
+  userId           String        @unique
+  displayName      String
+  targetLang       String        @default("en") // en, ja, ko, zh, fr, de
+  nativeLang       String        @default("vi")
+  currentLevel     LanguageLevel @default(A1)
+  dailyGoalMinutes Int           @default(15)
+  dailyGoalXp      Int           @default(30)
+  bio              String?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  user             User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  userId    String
+  tokenHash String   @unique
+  revoked   Boolean  @default(false)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([tokenHash])
+}
+
+model PlacementTestResult {
+  id            String        @id @default(uuid())
+  userId        String
+  targetLang    String
+  score         Int           // 0 to 100
+  assessedLevel LanguageLevel
+  answersJson   Json
+  createdAt     DateTime      @default(now())
+
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model UserProgress {
+  id          String    @id @default(uuid())
+  userId      String
+  courseId    String
+  unitId      String
+  lessonId    String
+  completed   Boolean   @default(false)
+  score       Int       @default(0)
+  completedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson      Lesson    @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, lessonId])
+  @@index([userId])
+  @@index([lessonId])
+}
+
+model UserLessonProgress {
+  id          String    @id @default(uuid())
+  userId      String
+  lessonId    String
+  completed   Boolean   @default(false)
+  score       Int       @default(0)
+  mistakes    Int       @default(0)
+  completedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson      Lesson    @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, lessonId])
+  @@index([userId])
+  @@index([lessonId])
+}
+
+model Course {
+  id          String        @id @default(uuid())
+  code        String        @unique // e.g. "en-vi-a1"
+  title       String
+  description String
+  language    String        @default("en")
+  level       LanguageLevel @default(A1)
+  thumbnailUrl String?
+  units       Unit[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@index([language])
+  @@index([level])
+}
+
+model Unit {
+  id          String    @id @default(uuid())
+  courseId    String
+  title       String
+  description String?
+  orderIndex  Int       @default(0)
+  lessons     Lesson[]
+  course      Course    @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([courseId])
+}
+
+model Lesson {
+  id                 String               @id @default(uuid())
+  unitId             String
+  title              String
+  orderIndex         Int                  @default(0)
+  xpReward           Int                  @default(15)
+  unit               Unit                 @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  exercises          Exercise[]
+  userProgress       UserProgress[]
+  userLessonProgress UserLessonProgress[]
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+
+  @@index([unitId])
+}
+
+model Exercise {
+  id         String   @id @default(uuid())
+  lessonId   String
+  lesson     Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  type       String   // MULTIPLE_CHOICE, LISTEN_AND_PICK, SENTENCE_REORDER, FILL_IN_BLANK, MATCH_PAIRS
+  prompt     String
+  audioUrl   String?
+  content    Json     // options, correctAnswer, words, pairs, explanation
+  orderIndex Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([lessonId])
+}
+
+model Deck {
+  id          String      @id @default(uuid())
+  title       String
+  description String?
+  language    String      @default("en")
+  isSystem    Boolean     @default(false)
+  userId      String?
+  user        User?       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  cards       Flashcard[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@index([userId])
+  @@index([isSystem])
+  @@index([language])
+}
+
+model Flashcard {
+  id           String            @id @default(uuid())
+  deckId       String
+  deck         Deck              @relation(fields: [deckId], references: [id], onDelete: Cascade)
+  term         String
+  ipa          String?
+  meaning      String
+  pos          String?           // noun, verb, adjective, etc.
+  examples     Json?             // Array of { text: string, translation: string, audioUrl?: string }
+  audioUrl     String?
+  imageUrl     String?
+  reviewStates CardReviewState[]
+  reviewLogs   ReviewLog[]
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+
+  @@index([deckId])
+  @@index([term])
+}
+
+model CardReviewState {
+  id            String    @id @default(uuid())
+  userId        String
+  cardId        String
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  card          Flashcard @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  stability     Float     @default(0)
+  difficulty    Float     @default(5.0)
+  reps          Int       @default(0)
+  lapses        Int       @default(0)
+  scheduledDays Int       @default(0)
+  state         CardState @default(NEW)
+  dueAt         DateTime  @default(now())
+  lastReview    DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@unique([userId, cardId])
+  @@index([userId, dueAt])
+  @@index([userId, state])
+}
+
+model ReviewLog {
+  id               String    @id @default(uuid())
+  userId           String
+  cardId           String
+  rating           Int
+  reviewDurationMs Int?
+  stability        Float
+  difficulty       Float
+  scheduledDays    Int
+  reviewedAt       DateTime  @default(now())
+  idempotencyKey   String?   @unique
+
+  user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  card             Flashcard @relation(fields: [cardId], references: [id], onDelete: Cascade)
+
+  @@index([userId, cardId])
+  @@index([userId, reviewedAt])
+}
+
+model RoleplayScenario {
+  id              String            @id
+  title           String
+  description     String
+  level           LanguageLevel     @default(A1)
+  topic           String
+  avatarUrl       String?
+  systemPrompt    String
+  initialMessage  String
+  initialAudioUrl String?
+  suggestedPhrases Json?
+  sessions        SpeakingSession[]
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  @@index([level])
+  @@index([topic])
+}
+
+model SpeakingSession {
+  id                String           @id @default(uuid())
+  userId            String
+  scenarioId        String
+  durationSeconds   Int              @default(0)
+  turnsCount        Int              @default(0)
+  averageScore      Float            @default(0)
+  accuracyScore     Float            @default(0)
+  fluencyScore      Float            @default(0)
+  completenessScore Float            @default(0)
+  transcript        Json
+  completed         Boolean          @default(false)
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+
+  user              User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  scenario          RoleplayScenario @relation(fields: [scenarioId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([scenarioId])
+  @@index([createdAt])
+}
+

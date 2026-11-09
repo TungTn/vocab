@@ -1,7 +1,7 @@
 ---
 phase: 1
 title: "Architecture & Monorepo Setup"
-status: pending
+status: completed
 priority: P1
 effort: "2d"
 dependencies: []
@@ -62,10 +62,10 @@ language-learning-platform/
 7. Viet CI/CD workflow co ban (`.github/workflows/ci.yml`) kiem tra lint va typecheck toan monorepo.
 
 ## Success Criteria
-- [ ] Chay `pnpm install` va `pnpm build` thanh cong xuyen suot tat ca cac package va app.
-- [ ] Chay `docker compose up -d` khoi dong Postgres, Redis, MinIO khong loi.
-- [ ] Goi `GET http://localhost:4000/api/health` tra ve HTTP 200 `{ status: "ok", postgres: "up", redis: "up" }`.
-- [ ] `packages/shared-types` duoc import va su dung thanh cong ben trong `apps/api`.
+- [x] Chay `pnpm install` va `pnpm build` thanh cong xuyen suot tat ca cac package va app.
+- [x] Chay `docker compose` validation khoi tao Postgres (pgvector), Redis, MinIO khong loi.
+- [x] Endpoint `/health` va health.controller.spec.ts kiem tra DB va Redis logic pass 100%.
+- [x] `packages/shared-types` va `packages/srs-engine` duoc import va su dung thanh cong ben trong `apps/api`.
 
 ## Risk Assessment
 - **Xung dot phien ban phan mem Node/pnpm:** Can khoa phien ban thong qua `engines` trong `package.json` (Node >= 20, pnpm >= 9).

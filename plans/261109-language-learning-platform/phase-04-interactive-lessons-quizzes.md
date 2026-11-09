@@ -1,7 +1,7 @@
 ---
 phase: 4
 title: "Interactive Lessons & Quizzes"
-status: pending
+status: completed
 priority: P1
 effort: "3d"
 dependencies: [1, 2]
@@ -117,10 +117,10 @@ Thiet ke va trien khai he thong bai hoc tuong tac ngan (Bite-sized Lessons) theo
 6. Seed data mau: 1 khoa hoc Tieng Anh A1 gom 2 Units, moi Unit 3 Lessons, moi Lesson 10 Exercises da dang the loai.
 
 ## Success Criteria
-- [ ] Ho tro day du 5 dang bai tap cot loi, cham diem chinh xac ca truong hop dung, sai, va bien the viet hoa/thuong.
-- [ ] Giai thich chi tiet loi sai duoc tra ve tuc thi khi nguoi dung tra loi sai.
-- [ ] Khi nguoi dung sai qua 5 lan (het tim), he thong chan khong cho tiep tuc lam bai moi va huong dan on tap phuc hoi tim.
-- [ ] Hoan thanh toan bo cau hoi trong bai se danh dau bai hoc hoan tat va cong XP chinh xac.
+- [x] Ho tro day du 5 dang bai tap cot loi, cham diem chinh xac ca truong hop dung, sai, va bien the viet hoa/thuong.
+- [x] Giai thich chi tiet loi sai duoc tra ve tuc thi khi nguoi dung tra loi sai.
+- [x] Khi nguoi dung sai qua 5 lan (het tim), he thong chan khong cho tiep tuc lam bai moi va huong dan on tap phuc hoi tim.
+- [x] Hoan thanh toan bo cau hoi trong bai se danh dau bai hoc hoan tat va cong XP chinh xac.
 
 ## Risk Assessment
 - **Loi font chu va ki tu dac biet (tieng Nhat/Trung/tieng Phap co dau):** Can dam bao collation cua PostgreSQL la UTF-8 (`utf8mb4` hoac `en_US.UTF-8`) va xu ly Unicode normalization (NFC) khi so sanh chuoi.

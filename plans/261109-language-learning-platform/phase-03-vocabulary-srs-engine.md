@@ -1,7 +1,7 @@
 ---
 phase: 3
 title: "Vocabulary & SRS Engine"
-status: pending
+status: completed
 priority: P1
 effort: "3d"
 dependencies: [1, 2]
@@ -101,10 +101,10 @@ Xay dung thu vien loi `@lingua/srs-engine` trien khai thuat toan lap lai ngat qu
 5. Xay dung API submit danh gia review the (`POST /api/srs/review`) thuc hien trong Database Transaction de dam bao tinh toan toan ven.
 
 ## Success Criteria
-- [ ] Thuat toan SRS trong `@lingua/srs-engine` vuot qua 100% test cases (kiem thu ca 4 nut danh gia: Again, Hard, Good, Easy).
-- [ ] API tra ve danh sach the can on tap trong ngay theo dung thu tu uu tien: the bi quen -> the den han -> the moi.
-- [ ] Danh gia the lap tuc cap nhat ngay review tiep theo chinh xac (vi du: the danh gia Easy co khoang on tap tang tu 1 ngay len 3-4 ngay).
-- [ ] Ho tro tai va phat audio phat am cua tu vung chuan xac.
+- [x] Thuat toan SRS trong `@lingua/srs-engine` vuot qua 100% test cases (kiem thu ca 4 nut danh gia: Again, Hard, Good, Easy; retrievability decay over time).
+- [x] API tra ve danh sach the can on tap trong ngay theo dung thu tu uu tien: the bi quen -> the den han -> the moi (kem Catch-up Mode).
+- [x] Danh gia the lap tuc cap nhat ngay review tiep theo chinh xac (vi du: the danh gia Easy co khoang on tap tang tu 1 ngay len 3-4 ngay).
+- [x] Ho tro tai va phat audio phat am cua tu vung chuan xac kem vi du song ngu.
 
 ## Risk Assessment
 - **Hien tuong don u the on tap (Review Hell):** Neu nguoi dung nghi hoc vai ngay, hang tram the bi don lai gay nan chi.

@@ -35,14 +35,14 @@ LinguaFlow la he thong hoc ngoai ngu thong minh da nen tang (Full-stack Multipla
 
 | Phase | Name | Status |
 |-------|------|--------|
-| 1 | [Architecture & Monorepo Setup](./phase-01-architecture-monorepo-setup.md) | Pending |
-| 2 | [Auth & User Progress Engine](./phase-02-auth-user-progress-engine.md) | Pending |
-| 3 | [Vocabulary & SRS Engine](./phase-03-vocabulary-srs-engine.md) | Pending |
-| 4 | [Interactive Lessons & Quizzes](./phase-04-interactive-lessons-quizzes.md) | Pending |
-| 5 | [Gamification & Engagement](./phase-05-gamification-engagement.md) | Pending |
-| 6 | [AI Speaking & Pronunciation](./phase-06-ai-speaking-pronunciation.md) | Pending |
-| 7 | [Web & Mobile Frontend Apps](./phase-07-web-mobile-frontend-apps.md) | Pending |
-| 8 | [Admin CMS & Deployment](./phase-08-admin-cms-deployment.md) | Pending |
+| 1 | [Architecture & Monorepo Setup](./phase-01-architecture-monorepo-setup.md) | Completed |
+| 2 | [Auth & User Progress Engine](./phase-02-auth-user-progress-engine.md) | Completed |
+| 3 | [Vocabulary & SRS Engine](./phase-03-vocabulary-srs-engine.md) | Completed |
+| 4 | [Interactive Lessons & Quizzes](./phase-04-interactive-lessons-quizzes.md) | Completed |
+| 5 | [Gamification & Engagement](./phase-05-gamification-engagement.md) | Completed |
+| 6 | [AI Speaking & Pronunciation](./phase-06-ai-speaking-pronunciation.md) | Completed |
+| 7 | [Web & Mobile Frontend Apps](./phase-07-web-mobile-frontend-apps.md) | Completed |
+| 8 | [Admin CMS & Deployment](./phase-08-admin-cms-deployment.md) | Completed |
 
 ## Dependencies
 

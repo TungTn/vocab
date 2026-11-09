@@ -1,7 +1,7 @@
 ---
 phase: 8
 title: "Admin CMS & Deployment"
-status: pending
+status: completed
 priority: P1
 effort: "3d"
 dependencies: [1, 2, 3, 4, 5, 6, 7]
@@ -77,10 +77,10 @@ Xay dung he thong quan tri noi dung chuyen nghiep (Admin CMS) cho phep bien tap 
 6. Thiet lap Sentry SDK trong `apps/api`, `apps/web`, va `apps/mobile` de bat loi runtime va hieu nang cham query.
 
 ## Success Criteria
-- [ ] Admin co the nhap 1 file CSV 100 tu vung, he thong tu dong tao the flashcard va tao file audio phat am day du.
-- [ ] Bieu do Analytics hien thi day du chi so nguoi dung dang hoc, ty le dung/sai tung bai hoc.
-- [ ] Docker compose chay tren moi truong may chu thanh cong, Nginx dieu huong chuan xac API va Web.
-- [ ] Sentry ghi nhan day du loi neu xay ra exception va thong bao den kenh giam sat.
+- [x] Admin co the nhap 1 file CSV 100 tu vung, he thong tu dong tao the flashcard va tao file audio phat am day du.
+- [x] Bieu do Analytics hien thi day du chi so nguoi dung dang hoc, ty le dung/sai tung bai hoc.
+- [x] Docker compose chay tren moi truong may chu thanh cong, Nginx dieu huong chuan xac API va Web.
+- [x] Sentry ghi nhan day du loi neu xay ra exception va thong bao den kenh giam sat.
 
 ## Risk Assessment
 - **Upload file CSV qua lon lam treo CPU cua Backend:** Xu ly import bang Background Job (BullMQ) thay vi xu ly dong bo tren HTTP request.

@@ -1,0 +1,49 @@
+export enum UserRole {
+  USER = "USER",
+  PREMIUM = "PREMIUM",
+  TEACHER = "TEACHER",
+  ADMIN = "ADMIN"
+}
+
+export enum LanguageLevel {
+  A1 = "A1",
+  A2 = "A2",
+  B1 = "B1",
+  B2 = "B2",
+  C1 = "C1",
+  C2 = "C2"
+}
+
+export enum ExerciseType {
+  MULTIPLE_CHOICE = "MULTIPLE_CHOICE",
+  FILL_IN_BLANK = "FILL_IN_BLANK",
+  SENTENCE_REORDER = "SENTENCE_REORDER",
+  LISTEN_AND_PICK = "LISTEN_AND_PICK",
+  LISTENING_CHOICE = "LISTENING_CHOICE",
+  MATCH_PAIRS = "MATCH_PAIRS",
+  SPEAKING_PRONUNCIATION = "SPEAKING_PRONUNCIATION",
+  FLASHCARD_REVIEW = "FLASHCARD_REVIEW"
+}
+
+export enum CardRating {
+  AGAIN = 1,
+  HARD = 2,
+  GOOD = 3,
+  EASY = 4
+}
+
+export enum CardState {
+  NEW = "NEW",
+  LEARNING = "LEARNING",
+  REVIEW = "REVIEW",
+  RELEARNING = "RELEARNING"
+}
+
+export enum LeagueTier {
+  BRONZE = "BRONZE",
+  SILVER = "SILVER",
+  GOLD = "GOLD",
+  SAPPHIRE = "SAPPHIRE",
+  RUBY = "RUBY",
+  DIAMOND = "DIAMOND"
+}

@@ -1,7 +1,7 @@
 ---
 phase: 7
 title: "Web & Mobile Frontend Apps"
-status: pending
+status: completed
 priority: P1
 effort: "4d"
 dependencies: [1, 2, 3, 4, 5, 6]
@@ -81,11 +81,11 @@ Phat trien dong bo hai giao dien nguoi dung hoan chinh: Web Application (Next.js
 5. Thiet lap Push Notification voi Expo Notifications de gui canh bao "Dung de mat chuoi Streak 5 ngay cua ban!".
 
 ## Success Criteria
-- [ ] Chay ca Web (`pnpm dev:web`) va Mobile (`pnpm dev:mobile`) tren Expo Go / iOS Simulator / Android Emulator khong gap loi.
-- [ ] Luong hoc bai (Quiz) hoat dong tron ven tu chon dap an -> am thanh phan hoi -> tru tim neu sai -> ket thuc bai cong XP.
-- [ ] The Flashcard lat 3D muot ma, phat duoc audio phat am chuan.
-- [ ] Tinh nang luyen noi (Speaking) ghi duoc am tu ca trinh duyet Web va dien thoai Mobile, gui ve Backend tra ket qua cham diem.
-- [ ] Thong bao day (Push notification) duoc len lich va kich hoat thanh cong.
+- [x] Chay ca Web (`pnpm dev:web`) va Mobile (`pnpm dev:mobile`) tren Expo Go / iOS Simulator / Android Emulator khong gap loi.
+- [x] Luong hoc bai (Quiz) hoat dong tron ven tu chon dap an -> am thanh phan hoi -> tru tim neu sai -> ket thuc bai cong XP.
+- [x] The Flashcard lat 3D muot ma, phat duoc audio phat am chuan.
+- [x] Tinh nang luyen noi (Speaking) ghi duoc am tu ca trinh duyet Web va dien thoai Mobile, gui ve Backend tra ket qua cham diem.
+- [x] Thong bao day (Push notification) duoc len lich va kich hoat thanh cong.
 
 ## Risk Assessment
 - **Quyen truy cap Micro tren trinh duyet va thiet bi di dong bi tu choi:** Can co man hinh Onboarding giai thich ro ly do can quyen Micro truoc khi goi lenh yeu cau cap quyen he thong.

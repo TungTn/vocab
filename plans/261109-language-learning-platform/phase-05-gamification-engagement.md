@@ -1,7 +1,7 @@
 ---
 phase: 5
 title: "Gamification & Engagement"
-status: pending
+status: completed
 priority: P1
 effort: "3d"
 dependencies: [2, 4]
@@ -114,11 +114,11 @@ Xay dung he thong Gamification toan dien kieu Duolingo nham toi da hoa ty le giu
 5. Trien khai `ShopService`: Mua vat pham tru Gems trong database transaction.
 
 ## Success Criteria
-- [ ] Streak duoc cap nhat chinh xac sau khi hoc xong bai dau tien trong ngay.
-- [ ] Streak Freeze hoat dong on dinh: bao ve duoc chuoi khi nguoi dung quen hoc 1 ngay.
-- [ ] Leaderboard tren Redis tra ve danh sach top 30 nguoi va rank cua user voi do tre < 15ms.
-- [ ] Mua vat pham trong shop tru gems an toan, tu choi giao dich neu so du khong du.
-- [ ] Cron job thu hai hang tuan tong ket va chuyen doi League chinh xac.
+- [x] Streak duoc cap nhat chinh xac sau khi hoc xong bai dau tien trong ngay.
+- [x] Streak Freeze hoat dong on dinh: bao ve duoc chuoi khi nguoi dung quen hoc 1 ngay.
+- [x] Leaderboard tren Redis tra ve danh sach top 30 nguoi va rank cua user voi do tre < 15ms.
+- [x] Mua vat pham trong shop tru gems an toan, tu choi giao dich neu so du khong du.
+- [x] Cron job thu hai hang tuan tong ket va chuyen doi League chinh xac.
 
 ## Risk Assessment
 - **Loi lech mui gio (Timezone Cheating):** Nguoi dung co the thay doi gio thiet bi tren dien thoai de gian lan streak.

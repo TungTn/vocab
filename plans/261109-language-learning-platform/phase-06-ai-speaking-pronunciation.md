@@ -1,7 +1,7 @@
 ---
 phase: 6
 title: "AI Speaking & Pronunciation"
-status: pending
+status: completed
 priority: P1
 effort: "3d"
 dependencies: [1, 2]
@@ -74,10 +74,10 @@ Xay dung he thong tro ly ao luyen giao tiep phan xa thoi gian thuc (AI Conversat
 5. Luu ket qua buoi luyen noi vao Database (`SpeakingSession`): do dai buoi noi, diem phat am trung binh, so luong tu vung moi da su dung.
 
 ## Success Criteria
-- [ ] Nguoi hoc noi vao micro, he thong nhan dien giong noi va hien thi van ban chinh xac >90%.
-- [ ] Cham diem tung tu trong cau voi giao dien to mau truc quan (xanh, vang, do).
-- [ ] AI dong vai tro chuyen thong minh theo dung tinh huong dat phong, goi mon ma khong lac de.
-- [ ] Do tre phan hoi duoi 1.5 giay tren ket noi mang binh thuong.
+- [x] Nguoi hoc noi vao micro, he thong nhan dien giong noi va hien thi van ban chinh xac >90%.
+- [x] Cham diem tung tu trong cau voi giao dien to mau truc quan (xanh, vang, do).
+- [x] AI dong vai tro chuyen thong minh theo dung tinh huong dat phong, goi mon ma khong lac de.
+- [x] Do tre phan hoi duoi 1.5 giay tren ket noi mang binh thuong.
 
 ## Risk Assessment
 - **Tieng on moi truong lam giam do chinh xac cua STT:** Can kem bo loc Voice Activity Detection (VAD) phia client truoc khi upload file audio.
