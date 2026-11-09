@@ -19,21 +19,17 @@ export class MobileApiClient {
       headers["Authorization"] = `Bearer ${this.token}`;
     }
 
-    try {
-      const res = await fetch(`${API_BASE_URL}${endpoint}`, {
-        ...options,
-        headers
-      });
+    const res = await fetch(`${API_BASE_URL}${endpoint}`, {
+      ...options,
+      headers
+    });
 
-      if (!res.ok) {
-        throw new Error(`API error: ${res.status}`);
-      }
-
-      return (await res.json()) as T;
-    } catch (err: any) {
-      console.warn(`[MobileApi] Fallback for ${endpoint}: ${err.message}`);
-      return {} as T;
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => ({}));
+      throw new Error(errorData.message || `API error: ${res.status}`);
     }
+
+    return (await res.json()) as T;
   }
 
   async getCourses() {

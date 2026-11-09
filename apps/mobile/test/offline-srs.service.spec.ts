@@ -8,7 +8,22 @@ describe("Mobile Offline & Media Services", () => {
   let srsService: OfflineSrsService;
 
   beforeEach(() => {
-    srsService = new OfflineSrsService();
+    srsService = new OfflineSrsService([
+      {
+        id: "offline-card-1",
+        term: "cappuccino",
+        ipa: "/ˌkæpəˈtʃiːnoʊ/",
+        meaning: "Cà phê cappuccino (espresso pha sữa nóng và bọt sữa)",
+        examples: [{ text: "Could I have a large cappuccino please?", translation: "Cho tôi một ly cappuccino lớn nhé?" }],
+        stability: 2.0,
+        difficulty: 4.5,
+        reps: 1,
+        lapses: 0,
+        scheduledDays: 1,
+        state: CardState.REVIEW,
+        dueAt: new Date().toISOString()
+      }
+    ]);
   });
 
   it("should retrieve due cards from local offline storage", () => {

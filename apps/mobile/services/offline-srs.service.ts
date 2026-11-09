@@ -28,43 +28,18 @@ export class OfflineSrsService {
   private localDeck: Map<string, OfflineFlashcard> = new Map();
   private pendingReviews: PendingReview[] = [];
 
-  constructor() {
-    this.seedDefaultCards();
+  constructor(initialCards?: OfflineFlashcard[]) {
+    if (initialCards && initialCards.length > 0) {
+      initialCards.forEach((c) => this.localDeck.set(c.id, c));
+    }
   }
 
-  private seedDefaultCards() {
-    const samples: OfflineFlashcard[] = [
-      {
-        id: "offline-card-1",
-        term: "cappuccino",
-        ipa: "/ˌkæpəˈtʃiːnoʊ/",
-        meaning: "Cà phê cappuccino (espresso pha sữa nóng và bọt sữa)",
-        examples: [{ text: "Could I have a large cappuccino please?", translation: "Cho tôi một ly cappuccino lớn nhé?" }],
-        stability: 2.0,
-        difficulty: 4.5,
-        reps: 1,
-        lapses: 0,
-        scheduledDays: 1,
-        state: CardState.REVIEW,
-        dueAt: new Date().toISOString()
-      },
-      {
-        id: "offline-card-2",
-        term: "croissant",
-        ipa: "/krwɑːˈsɑ̃/",
-        meaning: "Bánh sừng bò",
-        examples: [{ text: "Fresh croissants smell incredible in the morning.", translation: "Bánh sừng bò mới ra lò có mùi thơm tuyệt vời vào buổi sáng." }],
-        stability: 1.0,
-        difficulty: 5.0,
-        reps: 0,
-        lapses: 0,
-        scheduledDays: 0,
-        state: CardState.LEARNING,
-        dueAt: new Date().toISOString()
-      }
-    ];
+  loadCards(cards: OfflineFlashcard[]) {
+    cards.forEach((c) => this.localDeck.set(c.id, c));
+  }
 
-    samples.forEach((c) => this.localDeck.set(c.id, c));
+  clearLocalDeck() {
+    this.localDeck.clear();
   }
 
   getDueCards(): OfflineFlashcard[] {
@@ -124,6 +99,7 @@ export class OfflineSrsService {
     let synced = 0;
     let errors = 0;
 
+    // 1. Submit pending reviews to server
     const toSync = [...this.pendingReviews];
     for (const review of toSync) {
       try {
@@ -136,6 +112,32 @@ export class OfflineSrsService {
 
     if (errors === 0) {
       this.pendingReviews = [];
+    }
+
+    // 2. Fetch fresh queue from server and sync to localDeck
+    try {
+      const freshQueue = await mobileApi.getReviewQueue();
+      if (Array.isArray(freshQueue) && freshQueue.length > 0) {
+        freshQueue.forEach((card: any) => {
+          this.localDeck.set(card.id, {
+            id: card.id,
+            term: card.term,
+            ipa: card.ipa,
+            meaning: card.meaning,
+            examples: card.examples,
+            stability: card.stability || 2.0,
+            difficulty: card.difficulty || 4.5,
+            reps: card.reps || 0,
+            lapses: card.lapses || 0,
+            scheduledDays: card.scheduledDays || 1,
+            state: card.state || CardState.REVIEW,
+            dueAt: card.dueAt || new Date().toISOString(),
+            lastReview: card.lastReview
+          });
+        });
+      }
+    } catch {
+      // In offline mode, continue using existing local cache
     }
 
     return { syncedCount: synced, errors };
