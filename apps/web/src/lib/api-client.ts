@@ -123,11 +123,48 @@ class ApiClient {
   }
 
   // Auth Endpoints
-  async login(email: string, passwordHash: string) {
-    return this.request<{ accessToken: string; user: any }>("/auth/login", {
+  async login(email: string, password: string) {
+    const res = await this.request<{ accessToken: string; user: any }>("/auth/login", {
       method: "POST",
-      body: JSON.stringify({ email, password: passwordHash })
+      body: JSON.stringify({ email, password })
     });
+    if (res.accessToken) {
+      this.setToken(res.accessToken);
+    }
+    return res;
+  }
+
+  async register(email: string, username: string, password: string) {
+    const res = await this.request<{ accessToken: string; user: any }>("/auth/register", {
+      method: "POST",
+      body: JSON.stringify({ email, username, password })
+    });
+    if (res.accessToken) {
+      this.setToken(res.accessToken);
+    }
+    return res;
+  }
+
+  async oauthLogin(provider: "google" | "facebook" | "github", email: string, displayName?: string, avatarUrl?: string) {
+    const res = await this.request<{ accessToken: string; user: any }>("/auth/oauth", {
+      method: "POST",
+      body: JSON.stringify({ provider, email, displayName, avatarUrl })
+    });
+    if (res.accessToken) {
+      this.setToken(res.accessToken);
+    }
+    return res;
+  }
+
+  async changePassword(currentPassword: string, newPassword: string) {
+    return this.request<{ success: boolean; message: string }>("/auth/change-password", {
+      method: "POST",
+      body: JSON.stringify({ currentPassword, newPassword })
+    });
+  }
+
+  async getMe() {
+    return this.request<any>("/auth/me");
   }
 
   async getProfile() {

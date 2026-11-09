@@ -226,4 +226,63 @@ export class AuthService {
 
     return { success: true, message: "Password updated successfully" };
   }
+
+  async oauthLogin(dto: {
+    provider: "google" | "facebook" | "github";
+    email: string;
+    displayName?: string;
+    avatarUrl?: string;
+  }) {
+    const email = dto.email.toLowerCase().trim();
+    let user = await this.prisma.user.findUnique({
+      where: { email },
+      include: { profile: true }
+    });
+
+    if (!user) {
+      // Generate clean username from email or display name
+      const baseName = (dto.displayName || email.split("@")[0])
+        .replace(/[^a-zA-Z0-9]/g, "")
+        .toLowerCase()
+        .slice(0, 15) || "user";
+      const randomSuffix = Math.floor(1000 + Math.random() * 9000);
+      const username = `${baseName}_${randomSuffix}`;
+
+      user = await this.prisma.user.create({
+        data: {
+          email,
+          username,
+          avatarUrl: dto.avatarUrl,
+          role: "USER",
+          profile: {
+            create: {
+              displayName: dto.displayName || username,
+              targetLang: "en",
+              nativeLang: "vi",
+              currentLevel: "A1",
+              dailyGoalMinutes: 15,
+              dailyGoalXp: 30
+            }
+          }
+        },
+        include: { profile: true }
+      });
+    } else if (dto.avatarUrl && !user.avatarUrl) {
+      user = await this.prisma.user.update({
+        where: { id: user.id },
+        data: { avatarUrl: dto.avatarUrl },
+        include: { profile: true }
+      });
+    }
+
+    const tokens = this.generateTokens(user.id, user.email, user.role, user.username);
+    await this.storeRefreshToken(user.id, tokens.rawRefreshToken);
+
+    const { passwordHash: _, ...userWithoutPassword } = user;
+    return {
+      accessToken: tokens.accessToken,
+      refreshToken: tokens.rawRefreshToken,
+      user: userWithoutPassword
+    };
+  }
 }

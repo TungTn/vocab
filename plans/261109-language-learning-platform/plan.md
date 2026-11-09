@@ -43,6 +43,7 @@ LinguaFlow la he thong hoc ngoai ngu thong minh da nen tang (Full-stack Multipla
 | 6 | [AI Speaking & Pronunciation](./phase-06-ai-speaking-pronunciation.md) | Completed |
 | 7 | [Web & Mobile Frontend Apps](./phase-07-web-mobile-frontend-apps.md) | Completed |
 | 8 | [Admin CMS & Deployment](./phase-08-admin-cms-deployment.md) | Completed |
+| 9 | [User Authentication UI & OAuth](./phase-09-user-authentication-ui.md) | Completed |
 
 ## Dependencies
 

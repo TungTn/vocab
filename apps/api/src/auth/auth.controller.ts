@@ -76,6 +76,25 @@ export class AuthController {
     };
   }
 
+  @Post("oauth")
+  @HttpCode(HttpStatus.OK)
+  async oauthLogin(
+    @Body() dto: {
+      provider: "google" | "facebook" | "github";
+      email: string;
+      displayName?: string;
+      avatarUrl?: string;
+    },
+    @Res({ passthrough: true }) res: Response
+  ) {
+    const result = await this.authService.oauthLogin(dto);
+    this.setRefreshCookie(res, result.refreshToken);
+    return {
+      accessToken: result.accessToken,
+      user: result.user
+    };
+  }
+
   @Post("refresh")
   @HttpCode(HttpStatus.OK)
   async refresh(

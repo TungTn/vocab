@@ -24,6 +24,8 @@ describe("AuthService", () => {
         updateMany: vi.fn()
       },
       user: {
+        findUnique: vi.fn(),
+        create: vi.fn(),
         update: vi.fn()
       }
     };
@@ -185,6 +187,32 @@ describe("AuthService", () => {
         where: { userId: "user-victim-1" },
         data: { revoked: true }
       });
+    });
+  });
+
+  describe("OAuth Login", () => {
+    it("should login or register user via OAuth provider", async () => {
+      prisma.user.findUnique.mockResolvedValueOnce(null);
+      prisma.user.create.mockResolvedValueOnce({
+        id: "oauth-user-1",
+        email: "google.user@example.com",
+        username: "googleuser_1234",
+        role: "USER",
+        avatarUrl: "https://example.com/avatar.png",
+        profile: { displayName: "Google User" }
+      });
+
+      const result = await authService.oauthLogin({
+        provider: "google",
+        email: "google.user@example.com",
+        displayName: "Google User",
+        avatarUrl: "https://example.com/avatar.png"
+      });
+
+      expect(result).toHaveProperty("accessToken");
+      expect(result).toHaveProperty("refreshToken");
+      expect(result.user.email).toBe("google.user@example.com");
+      expect(prisma.refreshToken.create).toHaveBeenCalled();
     });
   });
 });
