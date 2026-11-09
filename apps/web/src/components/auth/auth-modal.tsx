@@ -10,7 +10,6 @@ import {
   User,
   Eye,
   EyeOff,
-  Sparkles,
   AlertCircle,
   Loader2,
   CheckCircle2
@@ -73,21 +72,6 @@ export function AuthModal() {
       }
     } catch (err: any) {
       setError(err.message || "Xác thực không thành công. Vui lòng thử lại.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleDemoLogin = async () => {
-    setError(null);
-    setLoading(true);
-    try {
-      const res = await apiClient.login("demo@linguaflow.com", "Password123!");
-      loginUser(res.user, res.accessToken);
-      setSuccessMsg("Đăng nhập thành công với tài khoản Demo Learner!");
-      setTimeout(() => closeAuthModal(), 500);
-    } catch (err: any) {
-      setError(err.message || "Không thể đăng nhập bằng tài khoản mẫu.");
     } finally {
       setLoading(false);
     }
@@ -284,17 +268,6 @@ export function AuthModal() {
               <span>{tab === "login" ? "Đăng Nhập" : "Đăng Ký Tài Khoản"}</span>
             </button>
           </form>
-
-          {/* Quick Demo Button */}
-          <button
-            type="button"
-            onClick={handleDemoLogin}
-            disabled={loading}
-            className="w-full py-2.5 bg-amber-50 hover:bg-amber-100 border border-amber-300 text-amber-800 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-2 group"
-          >
-            <Sparkles className="w-4 h-4 text-amber-600 group-hover:scale-110 transition-transform" />
-            <span>Đăng nhập 1-click Demo (demo@linguaflow.com)</span>
-          </button>
 
           {/* Social Divider */}
           <div className="relative flex items-center justify-center my-3">

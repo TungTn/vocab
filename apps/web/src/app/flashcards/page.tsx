@@ -14,7 +14,7 @@ export default function FlashcardsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [reviewedCount, setReviewedCount] = useState(0);
-  const { addXp } = useUserStore();
+  const { addXp, openAuthModal } = useUserStore();
 
   const fetchQueue = async () => {
     setLoading(true);
@@ -64,17 +64,26 @@ export default function FlashcardsPage() {
   }
 
   if (error) {
+    const isAuthError = error.includes("token") || error.includes("Unauthorized");
     return (
-      <div className="max-w-md mx-auto my-16 p-8 bg-white rounded-3xl shadow-sm border border-rose-200 text-center">
-        <AlertCircle className="w-12 h-12 text-rose-500 mx-auto mb-3" />
-        <h3 className="text-lg font-bold text-slate-800 mb-1">Không Thể Tải Thẻ Ghi Nhớ</h3>
-        <p className="text-xs text-slate-500 mb-6">{error}</p>
+      <div className="max-w-md mx-auto my-16 p-8 bg-white rounded-3xl shadow-sm border border-slate-200 text-center">
+        <AlertCircle className={`w-12 h-12 mx-auto mb-3 ${isAuthError ? "text-emerald-500" : "text-rose-500"}`} />
+        <h3 className="text-lg font-bold text-slate-800 mb-1">
+          {isAuthError ? "Vui Lòng Đăng Nhập" : "Không Thể Tải Thẻ Ghi Nhớ"}
+        </h3>
+        <p className="text-xs text-slate-500 mb-6">
+          {isAuthError ? "Đăng nhập để xem danh sách thẻ ôn tập FSRS được cá nhân hóa cho bạn." : error}
+        </p>
         <button
-          onClick={fetchQueue}
+          onClick={() => (isAuthError ? openAuthModal("login") : fetchQueue())}
           className="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-2 mx-auto transition-all"
         >
-          <RotateCcw className="w-4 h-4" />
-          <span>Thử Tải Lại</span>
+          {isAuthError ? <span>Đăng Nhập Ngay</span> : (
+            <>
+              <RotateCcw className="w-4 h-4" />
+              <span>Thử Tải Lại</span>
+            </>
+          )}
         </button>
       </div>
     );

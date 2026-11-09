@@ -10,7 +10,6 @@ import {
   Lock,
   Eye,
   EyeOff,
-  Sparkles,
   AlertCircle,
   Loader2,
   CheckCircle2,
@@ -46,21 +45,6 @@ export default function LoginPage() {
       setTimeout(() => router.push("/learn"), 600);
     } catch (err: any) {
       setError(err.message || "Email hoặc mật khẩu không chính xác.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleDemoLogin = async () => {
-    setError(null);
-    setLoading(true);
-    try {
-      const res = await apiClient.login("demo@linguaflow.com", "Password123!");
-      loginUser(res.user, res.accessToken);
-      setSuccessMsg("Đăng nhập thành công với tài khoản Demo Learner!");
-      setTimeout(() => router.push("/learn"), 600);
-    } catch (err: any) {
-      setError(err.message || "Không thể đăng nhập tài khoản mẫu.");
     } finally {
       setLoading(false);
     }
@@ -184,17 +168,6 @@ export default function LoginPage() {
             <span>Đăng Nhập</span>
           </button>
         </form>
-
-        {/* Quick Demo */}
-        <button
-          type="button"
-          onClick={handleDemoLogin}
-          disabled={loading}
-          className="w-full mt-3 py-2.5 bg-amber-50 hover:bg-amber-100 border border-amber-300 text-amber-800 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-2 group"
-        >
-          <Sparkles className="w-4 h-4 text-amber-600 group-hover:scale-110 transition-transform" />
-          <span>Đăng nhập 1-click Demo (demo@linguaflow.com)</span>
-        </button>
 
         {/* Social Divider */}
         <div className="relative flex items-center justify-center my-4">

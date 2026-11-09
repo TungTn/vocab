@@ -9,7 +9,7 @@ export default function ShopPage() {
   const [catalog, setCatalog] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const { gems, refillHearts, deductGems } = useUserStore();
+  const { gems, refillHearts, deductGems, openAuthModal } = useUserStore();
   const [message, setMessage] = useState<string | null>(null);
 
   const fetchCatalog = async () => {
@@ -30,6 +30,10 @@ export default function ShopPage() {
   }, []);
 
   const handleBuy = async (item: any) => {
+    if (!apiClient.getToken()) {
+      openAuthModal("login");
+      return;
+    }
     if (gems < item.costGems) {
       setMessage(`Không đủ Gems! Bạn cần thêm ${item.costGems - gems} 💎.`);
       setTimeout(() => setMessage(null), 3000);

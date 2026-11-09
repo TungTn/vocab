@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { apiClient } from "@/lib/api-client";
+import { useUserStore } from "@/store/user-store";
 import { AiSpeakingChat } from "@/components/speaking/ai-speaking-chat";
 import { Mic, Sparkles, MessageSquare, ArrowRight, AlertCircle, RefreshCw } from "lucide-react";
 
@@ -10,6 +11,7 @@ export default function SpeakingPage() {
   const [selectedScenario, setSelectedScenario] = useState<any | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { openAuthModal } = useUserStore();
 
   const fetchScenarios = async () => {
     setLoading(true);
@@ -100,7 +102,13 @@ export default function SpeakingPage() {
           {scenarios.map((sc) => (
             <div
               key={sc.id}
-              onClick={() => setSelectedScenario(sc)}
+              onClick={() => {
+                if (!apiClient.getToken()) {
+                  openAuthModal("login");
+                  return;
+                }
+                setSelectedScenario(sc);
+              }}
               className="p-6 bg-white hover:bg-slate-50/80 border border-slate-200 hover:border-emerald-300 rounded-3xl shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between group"
             >
               <div>

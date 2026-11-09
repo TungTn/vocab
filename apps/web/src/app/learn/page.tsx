@@ -14,7 +14,7 @@ export default function LearnPage() {
   const [lessonSession, setLessonSession] = useState<any | null>(null);
   const [sessionLoading, setSessionLoading] = useState(false);
   const [sessionError, setSessionError] = useState<string | null>(null);
-  const { addXp } = useUserStore();
+  const { addXp, openAuthModal } = useUserStore();
 
   const fetchCourses = async () => {
     setLoading(true);
@@ -31,10 +31,14 @@ export default function LearnPage() {
 
   useEffect(() => {
     fetchCourses();
-    apiClient.ensureDemoSession();
   }, []);
 
   const handleStartLesson = async (lesson: { id: string; title: string }) => {
+    if (!apiClient.getToken()) {
+      openAuthModal("login");
+      return;
+    }
+
     setSelectedLesson(lesson);
     setSessionLoading(true);
     setSessionError(null);
