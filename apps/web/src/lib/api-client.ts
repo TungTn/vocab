@@ -9,6 +9,7 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000/a
 
 class ApiClient {
   private token: string | null = null;
+  private isAuthenticating: Promise<string | null> | null = null;
 
   setToken(token: string) {
     this.token = token;
@@ -31,8 +32,62 @@ class ApiClient {
     }
   }
 
+  /**
+   * Automatically initializes a demo learner session if unauthenticated,
+   * guaranteeing zero "No auth token" interruptions for learners.
+   */
+  async ensureDemoSession(): Promise<string | null> {
+    if (this.isAuthenticating) {
+      return this.isAuthenticating;
+    }
+
+    this.isAuthenticating = (async () => {
+      try {
+        let res = await fetch(`${API_BASE_URL}/auth/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: "demo@linguaflow.com", password: "Password123!" })
+        });
+
+        if (!res.ok) {
+          // If demo user is missing, auto-register
+          res = await fetch(`${API_BASE_URL}/auth/register`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: "demo@linguaflow.com",
+              username: "Learner",
+              password: "Password123!"
+            })
+          });
+        }
+
+        if (res.ok) {
+          const data = await res.json();
+          if (data.accessToken) {
+            this.setToken(data.accessToken);
+            return data.accessToken;
+          }
+        }
+      } catch (err) {
+        console.warn("Unable to establish demo session:", err);
+      } finally {
+        this.isAuthenticating = null;
+      }
+      return null;
+    })();
+
+    return this.isAuthenticating;
+  }
+
   private async request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
-    const token = this.getToken();
+    let token = this.getToken();
+
+    // Auto-login demo user if no token exists and not calling auth endpoints
+    if (!token && typeof window !== "undefined" && !endpoint.startsWith("/auth/")) {
+      token = await this.ensureDemoSession();
+    }
+
     const headers: Record<string, string> = {
       "Content-Type": "application/json",
       ...(options.headers as Record<string, string>)
@@ -42,10 +97,22 @@ class ApiClient {
       headers["Authorization"] = `Bearer ${token}`;
     }
 
-    const res = await fetch(`${API_BASE_URL}${endpoint}`, {
+    let res = await fetch(`${API_BASE_URL}${endpoint}`, {
       ...options,
       headers
     });
+
+    // If 401 Unauthorized (e.g. expired token), attempt token renewal once
+    if (res.status === 401 && typeof window !== "undefined" && !endpoint.startsWith("/auth/")) {
+      const freshToken = await this.ensureDemoSession();
+      if (freshToken) {
+        headers["Authorization"] = `Bearer ${freshToken}`;
+        res = await fetch(`${API_BASE_URL}${endpoint}`, {
+          ...options,
+          headers
+        });
+      }
+    }
 
     if (!res.ok) {
       const errorData = await res.json().catch(() => ({}));

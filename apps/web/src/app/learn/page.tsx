@@ -31,6 +31,7 @@ export default function LearnPage() {
 
   useEffect(() => {
     fetchCourses();
+    apiClient.ensureDemoSession();
   }, []);
 
   const handleStartLesson = async (lesson: { id: string; title: string }) => {

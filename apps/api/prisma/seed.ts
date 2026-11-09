@@ -1,4 +1,5 @@
-import { PrismaClient, LanguageLevel } from "@prisma/client";
+import { PrismaClient, LanguageLevel, UserRole } from "@prisma/client";
+import * as argon2 from "argon2";
 import { SYSTEM_ACHIEVEMENTS } from "../src/gamification/achievements.service";
 import { SYSTEM_SCENARIOS } from "../src/ai/scenarios.data";
 
@@ -452,6 +453,78 @@ async function main() {
       }
     });
   }
+
+  console.log("🌱 [Seed] 5. Seeding Demo Learner & Admin Accounts...");
+  const hashedPassword = await argon2.hash("Password123!", {
+    type: argon2.argon2id,
+    memoryCost: 2 ** 16,
+    timeCost: 3,
+    parallelism: 1
+  });
+
+  await prisma.user.upsert({
+    where: { email: "demo@linguaflow.com" },
+    update: {
+      hearts: 5,
+      gems: 150,
+      streak: 5,
+      xp: 320
+    },
+    create: {
+      email: "demo@linguaflow.com",
+      username: "Learner",
+      passwordHash: hashedPassword,
+      role: UserRole.USER,
+      hearts: 5,
+      gems: 150,
+      streak: 5,
+      xp: 320,
+      profile: {
+        create: {
+          displayName: "Learner Demo",
+          targetLang: "en",
+          nativeLang: "vi",
+          currentLevel: "A1",
+          dailyGoalMinutes: 15,
+          dailyGoalXp: 30
+        }
+      }
+    }
+  });
+
+  const adminHashedPassword = await argon2.hash("Admin123!", {
+    type: argon2.argon2id,
+    memoryCost: 2 ** 16,
+    timeCost: 3,
+    parallelism: 1
+  });
+
+  await prisma.user.upsert({
+    where: { email: "admin@linguaflow.com" },
+    update: {
+      role: UserRole.ADMIN
+    },
+    create: {
+      email: "admin@linguaflow.com",
+      username: "Admin",
+      passwordHash: adminHashedPassword,
+      role: UserRole.ADMIN,
+      hearts: 5,
+      gems: 9999,
+      streak: 10,
+      xp: 5000,
+      profile: {
+        create: {
+          displayName: "System Admin",
+          targetLang: "en",
+          nativeLang: "vi",
+          currentLevel: "B2",
+          dailyGoalMinutes: 30,
+          dailyGoalXp: 50
+        }
+      }
+    }
+  });
 
   console.log("🎉 [Seed] Full system seeding completed successfully!");
 }
