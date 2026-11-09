@@ -10,6 +10,8 @@
     "dev:api": "pnpm --filter @linguaflow/api dev",
     "dev:web": "pnpm --filter @linguaflow/web dev",
     "dev:mobile": "pnpm --filter @linguaflow/mobile dev",
+    "db:migrate": "pnpm --filter @linguaflow/api exec prisma db push",
+    "db:seed": "pnpm --filter @linguaflow/api exec ts-node prisma/seed.ts",
     "lint": "turbo run lint",
     "test": "turbo run test",
     "clean": "turbo run clean && rimraf node_modules",

@@ -13,6 +13,19 @@ export class CoursesService {
         ...(level && { level })
       },
       include: {
+        units: {
+          orderBy: { orderIndex: "asc" },
+          include: {
+            lessons: {
+              orderBy: { orderIndex: "asc" },
+              include: {
+                _count: {
+                  select: { exercises: true }
+                }
+              }
+            }
+          }
+        },
         _count: {
           select: { units: true }
         }
@@ -29,6 +42,7 @@ export class CoursesService {
       level: c.level,
       thumbnailUrl: c.thumbnailUrl,
       totalUnits: c._count.units,
+      units: c.units,
       createdAt: c.createdAt,
       updatedAt: c.updatedAt
     }));

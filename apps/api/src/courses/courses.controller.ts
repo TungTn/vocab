@@ -5,7 +5,6 @@ import { CurrentUser } from "../common/decorators/current-user.decorator";
 import { LanguageLevel } from "@linguaflow/shared-types";
 
 @Controller("courses")
-@UseGuards(JwtAuthGuard)
 export class CoursesController {
   constructor(private readonly coursesService: CoursesService) {}
 
@@ -18,6 +17,7 @@ export class CoursesController {
   }
 
   @Get(":id")
+  @UseGuards(JwtAuthGuard)
   async getCourse(
     @Param("id") courseId: string,
     @CurrentUser("userId") userId: string
