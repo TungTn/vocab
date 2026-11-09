@@ -14,8 +14,7 @@ const LoginPage = () => {
   }, [navigate]);
 
   const handleLogin = () => {
-    // Force Google account selection every time
-    window.location.href = 'http://localhost:3000/api/auth/google?prompt=select_account&client=react';
+    window.location.href = 'http://localhost:3000/api/auth/google?prompt=select_account&client=react-vite';
   };
 
   return (

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { addWord, updateWord } from '../services/api';
+import {useNavigate} from "react-router-dom";
 
 type Props = {
   selectedWord: any;
@@ -7,6 +8,7 @@ type Props = {
 };
 
 export const WordForm: React.FC<Props> = ({ selectedWord, onSubmitted }) => {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     word: '',
     translation: '',
@@ -33,23 +35,27 @@ export const WordForm: React.FC<Props> = ({ selectedWord, onSubmitted }) => {
     onSubmitted();
   };
 
+  const handleCancel = () => {
+    navigate(`/home`);
+  }
+
   return (
     <div className="space-y-3">
       {Object.entries(form).map(([key, value]) => (
-        <input
-          key={key}
-          name={key}
-          value={value}
-          onChange={handleChange}
-          placeholder={key}
-          className="border px-3 py-2 w-full"
-        />
+        <input key={key}
+               name={key}
+               value={value}
+               onChange={handleChange}
+               placeholder={key}
+               className="border px-3 py-2 w-full"/>
       ))}
-      <button
-        onClick={handleSubmit}
-        className="bg-blue-600 text-white px-4 py-2 rounded"
-      >
-        {selectedWord ? 'Update' : 'Add'}
+      <button onClick={handleSubmit}
+              className="bg-blue-600 text-white px-4 py-2 rounded">
+        {selectedWord ? 'Update 333' : 'Add 222'}
+      </button>
+      <button onClick={handleCancel}
+              className="bg-red-600 text-white px-4 py-2 rounded">
+        {'Cancel'}
       </button>
     </div>
   );

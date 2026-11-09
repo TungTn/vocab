@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { fetchWords } from '../services/api';
+import React, { SetStateAction, useEffect, useState} from 'react';
+import {fetchWords} from '../services/api';
 
 type Props = {
   onEdit: (word: any) => void;
 };
 
-export const WordTable: React.FC<Props> = ({ onEdit }) => {
+export const WordTable: React.FC<Props> = ({onEdit}) => {
   const [words, setWords] = useState<any[]>([]);
 
   useEffect(() => {
-    fetchWords().then((res) => setWords(res.data.data));
+    fetchWords().then((res: { data: { data: SetStateAction<any[]>; }; }) => setWords(res.data.data));
   }, []);
 
   return (

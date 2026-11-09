@@ -49,7 +49,7 @@ export const WordForm: React.FC<Props> = ({ selectedWord, onSubmitted }) => {
         onClick={handleSubmit}
         className="bg-blue-600 text-white px-4 py-2 rounded"
       >
-        {selectedWord ? 'Update' : 'Add'}
+        {selectedWord ? 'Update 123' : 'Add 123'}
       </button>
     </div>
   );
